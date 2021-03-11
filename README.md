@@ -18,5 +18,4 @@ Input files should be split by each sample and each chromosome. The format shoul
         chr21	5014097	1	0
 
 ### PMDfinder workflow plot
-![PMDfinder workflow plot](https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png){:height="50%" width="50%"}
-
+<img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="100" height="100">
