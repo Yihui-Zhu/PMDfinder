@@ -23,4 +23,4 @@ Input files should be split by each sample and each chromosome. The format shoul
 ### Example output:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="600" height="400"></div>
 
-Each dot represents the methylation level of an individual CpG site. The red line represent the identification of PMD. 
+Each dot represents the percent methylation level of an individual CpG site. The red line represent the identification of PMD. 
