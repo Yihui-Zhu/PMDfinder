@@ -10,6 +10,8 @@ First prepare WGBS data in DSS file format.
 ## Installation
 Make local copy of the package from Github and change directory in Terminal to the local package folder
 ```
+$ git clone https://github.com/Yihui-Zhu/PMDfinder.git
+$ cd PMDfinder
 $ python install .
 ```
 
