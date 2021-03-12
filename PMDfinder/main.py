@@ -12,7 +12,8 @@ import tensorflow as tf
 from tensorflow.keras import layers, losses
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model           
-
+configuration = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
+session = tf.compat.v1.Session(config=configuration)
 
 class Autoencoder(Model):
     def __init__(self, latent_dim):
