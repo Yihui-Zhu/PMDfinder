@@ -18,7 +18,6 @@ $ python install .
 $ python
 >>> from PMDfinder.main import findPMD
 >>> findPMD("test/meth_PMD.csv", "tests/output.csv")
->>> quit()
 ```
 
 ## Function
