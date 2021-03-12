@@ -7,6 +7,23 @@ By Yihui Zhu
 ## Running PMDfinder:
 First prepare WGBS data in DSS file format.
 
+## Installation
+Make local copy of the package from Github and change directory in Terminal to the local package
+```
+$ python install .
+```
+
+## Generic Usage Example
+```
+$ python
+>>> from PMDfinder.main import findPMD
+>>> findPMD("test/meth_PMD.csv", "tests/output.csv")
+>>> quit()
+```
+
+## Function
+`findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
+
 ## DSS file format:
 Input files should be split by each sample and each chromosome. The format should be in DSS which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
 
@@ -24,3 +41,4 @@ Input files should be split by each sample and each chromosome. The format shoul
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="600" height="400"></div>
 
 Each dot represents the percent methylation level of an individual CpG site. The red line represent the identification of PMD. 
+
