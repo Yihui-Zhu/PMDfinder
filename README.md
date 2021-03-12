@@ -17,7 +17,7 @@ $ python install .
 ```
 $ python
 >>> from PMDfinder.main import findPMD
->>> findPMD("test/meth_PMD.csv", "tests/output.csv")
+>>> findPMD("tests/meth_PMD.csv", "tests/output.csv")
 ```
 
 ## Function
