@@ -8,24 +8,19 @@ classifier = [
     'Programming Language :: Python :: 3'
 ]
 
-setup(
-  name='PMDfinder',
-  version='0.0.1',
-  description='Identify partially methylation from methylome',
-  long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
-  url='',  
-  author='Yihui Zhu',
-  author_email='yhzhu@ucdavis.edu',
-  license='MIT', 
-  classifiers=classifiers,
-  keywords='PMD', 
-  packages=find_packages(),
-  install_requires=[
-      'pandas',
-      'numpy',
-      'random',
-      'scikit-learn',
-      'tensorflow',
-      'matplotlib'
-  ] 
-)
+setup(name='PMDfinder',
+      version='0.0.1',
+      description='Identify partially methylation from methylome',
+      url='https://github.com/Yihui-Zhu/PMDfinder',  
+      author='Yihui Zhu',
+      author_email='yhzhu@ucdavis.edu',
+      license='MIT', 
+      keywords='PMD', 
+      packages=find_packages(),
+      install_requires=[
+          'pandas',
+          'numpy',
+          'sklearn',
+          'tensorflow',
+          'matplotlib'
+      ])
