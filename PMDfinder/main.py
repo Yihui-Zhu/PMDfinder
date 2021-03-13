@@ -1,7 +1,7 @@
 # Load Packages
 import pandas as pd
 import numpy as np
-# import random
+import random
 from matplotlib import pyplot as plt
 from sklearn.model_selection import LeaveOneOut
 from sklearn import preprocessing
@@ -14,6 +14,7 @@ from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model           
 configuration = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
 session = tf.compat.v1.Session(config=configuration)
+random.seed(12)
 
 class Autoencoder(Model):
     def __init__(self, latent_dim):
