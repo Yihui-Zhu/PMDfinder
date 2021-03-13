@@ -46,8 +46,10 @@ def findPMD(filepath, outputpath):
     methylation = methylation[1:]
 
     # store the location and the percent methylation
-    meth_ratio = methylation["X"]/methylation["N"]
-    geno_pos = methylation["pos"]
+    a = list(map(float, methylation['X']))
+    b = list(map(float, methylation['N']))
+    meth_ratio = [i / j for i, j in zip(a, b)]
+    geno_pos = list(map(float, methylation['pos']))
 
     ### Data Conversion
     # convert methylation ratio to PMD/non-PMD level (y=4x(1-x))
