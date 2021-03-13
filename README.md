@@ -25,15 +25,15 @@ $ python
 ## Function
 `findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
 
-## DSS file format:
-Input files should be split by each sample and each chromosome. The format should be in DSS which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
+## BED file format:
+Input files should be split by each sample and each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
 
         chr	        pos	N	X
-        chr21	5013971	168	70
-        chr21	5014046	10	5
-        chr21	5014056	60	5
-        chr21	5014082	190	10
-        chr21	5014097	50	6
+        chr22	21971583	168	70
+        chr22	21971603	10	5
+        chr22	21971653	60	5
+        chr22	21971662	190	10
+        chr22	21971701	50	6
 
 ### PMDfinder workflow plot:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="400" height="525"></div>
