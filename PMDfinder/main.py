@@ -133,8 +133,8 @@ def findPMD(filepath, outputpath):
     
     # file output
     output_methylation = methylation[:len(methylation)-1023]
-    output_methylation['PMD_predict'] = pd.DataFrame(final_result)[0]
-    output_methylation['PMD_predict'] = output_methylation['PMD_predict'].map({1: 'Non-PMD', 0: 'PMD'})
+    output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0]
+    output_methylation.loc[:, 'PMD_predict'] = output_methylation.loc[:, 'PMD_predict'].map({1: 'Non-PMD', 0: 'PMD'})
     output_methylation.to_csv(outputpath, sep='\t', index = False, header=True)
 
     # np.savetxt(outputpath, final_result, delimiter=',')
