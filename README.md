@@ -28,7 +28,7 @@ $ python
 ## BED file format:
 Input files should be split by each sample and each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
 
-        chr	        pos	        N	        X
+        chr	        pos	        N	X
         chr22	21971583	168	70
         chr22	21971603	10	5
         chr22	21971653	60	5
