@@ -1,1 +1,1 @@
-from PMDfinder.main import findPMD
+from main import findPMD
