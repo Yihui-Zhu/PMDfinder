@@ -22,6 +22,5 @@ setup(name='PMDfinder',
           'numpy',
           'sklearn',
           'tensorflow',
-          'matplotlib',
-          'random>=0',
+          'matplotlib'
       ])
