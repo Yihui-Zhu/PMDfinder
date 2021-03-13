@@ -42,15 +42,12 @@ def findPMD(filepath, outputpath):
     """
     # load DSS methylation data
     methylation = pd.read_csv(filepath, sep='\t', comment='t', header = 0, low_memory=False)
-    # header = ['chr', 'pos', 'N', 'X']
-    # methylation.columns = header[:len(methylation.columns)]
-    # methylation = methylation[1:]
 
     # store the location and the percent methylation
     a = list(map(float, methylation['X']))
     b = list(map(float, methylation['N']))
     meth_ratio = [i / j for i, j in zip(a, b)]
-    geno_pos = list(map(float, methylation['pos']))
+    # geno_pos = list(map(float, methylation['pos']))
 
     ### Data Conversion
     # convert methylation ratio to PMD/non-PMD level (y=4x(1-x))
@@ -132,9 +129,8 @@ def findPMD(filepath, outputpath):
         final_result[assign2[break_pts2[interval-1] : break_pts2[interval]-1]] == 0
     
     # file output
-    output_methylation = methylation[:len(methylation)-1023]
-    output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0]
-    output_methylation.loc[:, 'PMD_predict'] = output_methylation['PMD_predict'].map({1: 'Non-PMD', 0: 'PMD'})
+    output_methylation = methylation[:len(methylation)-1023].copy()
+    output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0].map({1: 'Non-PMD', 0: 'PMD'})
     output_methylation.to_csv(outputpath, sep='\t', index = False, header=True)
 
     # np.savetxt(outputpath, final_result, delimiter=',')
