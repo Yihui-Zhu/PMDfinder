@@ -12,7 +12,7 @@ Make local copy of the package from Github and change directory in Terminal to t
 ```
 $ git clone https://github.com/Yihui-Zhu/PMDfinder.git
 $ cd PMDfinder
-$ python install .
+$ pip install .
 ```
 
 ## Generic Usage Example
