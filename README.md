@@ -18,7 +18,7 @@ $ pip install .
 ## Generic Usage Example
 ```
 $ python
->>> from PMDfinder.main import findPMD
+>>> from PMDfinder import findPMD
 >>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed")
 ```
 
