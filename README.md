@@ -5,7 +5,7 @@
 By Yihui Zhu
 
 ## Running PMDfinder:
-First prepare WGBS data in DSS file format.
+First prepare WGBS data in BED file format.
 
 ## Installation
 Make local copy of the package from Github and change directory in Terminal to the local package folder
