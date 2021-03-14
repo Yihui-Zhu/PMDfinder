@@ -133,4 +133,6 @@ def findPMD(filepath, outputpath):
     output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0].map({1: 'Non-PMD', 0: 'PMD'})
     output_methylation.to_csv(outputpath, sep='\t', index = False, header=True)
 
+    print("Finished PMDfinder!")
+
     # np.savetxt(outputpath, final_result, delimiter=',')
