@@ -66,6 +66,8 @@ def findPMD(filepath, outputpath):
     X = np.zeros((N-1023, 1024))
     for i in range(N-1023):
         X[i, :] = PMD_level[i:i+1024]
+    
+    X = X.astype(np.float32)
 
     ### Autoencoder
     # latent is the last variable
