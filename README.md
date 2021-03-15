@@ -4,6 +4,9 @@
 
 By Yihui Zhu
 
+## Language
+Python 3
+
 ## Running PMDfinder:
 First prepare WGBS data in BED file format.
 
