@@ -1,6 +1,6 @@
 # PMDfinder
 
-### A pipeline to identify partially methylation domains (PMDs) from whole-genome bisulfite sequencing (WGBS) data
+### A Python Package to identify partially methylation domains (PMDs) from whole-genome bisulfite sequencing (WGBS) data
 
 By Yihui Zhu
 
