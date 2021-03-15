@@ -14,6 +14,7 @@ from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model           
 configuration = tf.compat.v1.ConfigProto(device_count={"GPU": 0})
 session = tf.compat.v1.Session(config=configuration)
+tf.enable_eager_execution()
 random.seed(12)
 
 class Autoencoder(Model):
