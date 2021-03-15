@@ -29,7 +29,7 @@ $ python
 `findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
 
 ## Input BED file format:
-Input files should be split by each sample and each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
+Input files should be split by each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
 
         chr	        pos	        N	X
         chr22	21971583	39	26
