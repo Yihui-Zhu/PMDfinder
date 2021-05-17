@@ -9,8 +9,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score
 from sklearn.model_selection import train_test_split
 from sklearn.cluster import KMeans
 import tensorflow as tf
-tf.enable_eager_execution()
-tf.executing_eagerly()
+# tf.enable_eager_execution()
+# tf.executing_eagerly()
 from tensorflow.keras import layers, losses
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model           
