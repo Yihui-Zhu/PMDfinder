@@ -109,7 +109,7 @@ def findPMD(filepath, outputpath1, outputpath2):
 
     # change the PMD interval with less than 101 to Non-PMD
     for interval in small_PMD_intervals:
-        final_result[assign1[break_pts1[interval-1] : break_pts1[interval]-1]] = 0
+        final_result[assign1[break_pts1[interval-1] : break_pts1[interval]]] = 0
 
     ## Merge PMD that is less than 101 bp from the next one
     # This need to check the non-PMD region length
@@ -131,7 +131,7 @@ def findPMD(filepath, outputpath1, outputpath2):
 
     # change the PMD interval with less than 101 to Non-PMD
     for interval in small_non_PMD_intervals:
-        final_result[assign2[break_pts2[interval-1] : break_pts2[interval]-1]] = 1
+        final_result[assign2[break_pts2[interval-1] : break_pts2[interval]]] = 1
     
     # file output
     output_methylation = methylation[:len(methylation)-1023].copy()
