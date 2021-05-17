@@ -140,7 +140,6 @@ def findPMD(filepath, outputpath1, outputpath2):
 
     # output grange file
     df = pd.DataFrame(columns = ['chr', 'start', 'end', 'status'])
-    output_methylation.iloc[1, 4]
 
     ncols = len(output_methylation)
     i, j = 0, 0
@@ -157,8 +156,9 @@ def findPMD(filepath, outputpath1, outputpath2):
         else:
             df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
             i = j
-    df.to_csv(outputpath2, sep='\t', index = False, header=True)
 
+    df.to_csv(outputpath2, sep='\t', index = False, header=True)
+    # print(df)
 
     print("Finished PMDfinder!")
 
