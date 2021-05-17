@@ -22,7 +22,7 @@ $ pip install .
 ```
 $ python
 >>> from PMDfinder import findPMD
->>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed", "test/output_GRanges.bed")
+>>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed", "tests/output_GRanges.bed")
 ```
 
 ## Function
