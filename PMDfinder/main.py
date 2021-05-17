@@ -118,7 +118,7 @@ def findPMD(filepath, outputpath1, outputpath2):
         if final_result[i] == 0:
             assign2.append(i)
 
-    break_pts2 = []
+    break_pts2 = [0]
     for i in range(1, len(assign2)):
         if assign2[i] - assign2[i-1] > 1:
             break_pts2.append(i)
