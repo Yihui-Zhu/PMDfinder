@@ -46,7 +46,7 @@ Input files should be split by each chromosome. The format should be in BED whic
 
 Each dot represents the percent methylation level of an individual CpG site. The red line represent the identification of PMD. 
 
-### Example output BED:
+### Example output_meth BED:
         chr	        pos	        N	X	PMD_predict
         chr22	21971583	39	26	Non-PMD
         chr22	21971603	34	31	Non-PMD
