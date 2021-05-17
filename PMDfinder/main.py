@@ -32,13 +32,14 @@ class Autoencoder(Model):
         decoded = self.decoder(encoded)
         return decoded  
 
-def findPMD(filepath, outputpath):
+def findPMD(filepath, outputpath1, outputpath2):
     """
-        findPMD(filepath, outputpath)
+        findPMD(filepath, outputpath1, outputpath2)
     The main function in PMDfinder.
     
     * filepath: input BED file path.
-    * outputpath: the output file path.
+    * outputpath1: the output bed file path.
+    * outputpath2: the output grange file path.
     """
     # load DSS methylation data
     methylation = pd.read_csv(filepath, sep='\t', comment='t', header = 0, low_memory=False)
@@ -85,7 +86,7 @@ def findPMD(filepath, outputpath):
     final_result = kmeans.labels_
 
     ### Post-processing steps
-    ## Remove PMD that is less than 51 bp length
+    ## Remove PMD that is less than 101 bp length
     assign1 = [] # index for the location equal to 1
     for i in range(len(final_result)):
         if final_result[i] == 1:
@@ -95,16 +96,16 @@ def findPMD(filepath, outputpath):
     for i in range(1, len(assign1)):
         if assign1[i] - assign1[i-1] > 1:
             break_pts1.append(i)    
-
+    
     # small_PMD_intervals: identify region that is close with each other 
     small_PMD_intervals = []
     for i in range(1, len(break_pts1)):
         if assign1[break_pts1[i]-1] - assign1[break_pts1[i-1]] + 1 < 101:
             small_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 51 to Non-PMD
+    # change the PMD interval with less than 101 to Non-PMD
     for interval in small_PMD_intervals:
-        final_result[assign1[break_pts1[interval-1] : break_pts1[interval]-1]] == 0
+        final_result[assign1[break_pts1[interval-1] : break_pts1[interval]-1]] = 0
 
     ## Merge PMD that is less than 101 bp from the next one
     # This need to check the non-PMD region length
@@ -124,15 +125,37 @@ def findPMD(filepath, outputpath):
         if assign2[break_pts2[i]-1] - assign2[break_pts2[i-1]] + 1 < 101:
             small_non_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 51 to Non-PMD
+    # change the PMD interval with less than 101 to Non-PMD
     for interval in small_non_PMD_intervals:
-        final_result[assign2[break_pts2[interval-1] : break_pts2[interval]-1]] == 0
+        final_result[assign2[break_pts2[interval-1] : break_pts2[interval]-1]] = 1
     
     # file output
     output_methylation = methylation[:len(methylation)-1023].copy()
     output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0].map({1: 'Non-PMD', 0: 'PMD'})
-    output_methylation.to_csv(outputpath, sep='\t', index = False, header=True)
+    output_methylation.to_csv(outputpath1, sep='\t', index = False, header=True)
+
+    # output grange file
+    df = pd.DataFrame(columns = ['chr', 'start', 'end', 'status'])
+    output_methylation.iloc[1, 4]
+
+    ncols = len(output_methylation)
+    i, j = 0, 0
+
+    while i < ncols:
+        if j == ncols:
+            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
+            break
+
+        ti = output_methylation.iloc[i, 4]
+        tj = output_methylation.iloc[j, 4]
+        if tj == ti:
+            j += 1
+        else:
+            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
+            i = j
+    output_methylation.to_csv(outputpath2, sep='\t', index = False, header=True)
+
 
     print("Finished PMDfinder!")
 
-    # np.savetxt(outputpath, final_result, delimiter=',')
+    # np.savetxt(outputpath1, outputpath2, final_result, delimiter=',')
