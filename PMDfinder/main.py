@@ -157,7 +157,7 @@ def findPMD(filepath, outputpath1, outputpath2):
         else:
             df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
             i = j
-    output_methylation.to_csv(outputpath2, sep='\t', index = False, header=True)
+    df.to_csv(outputpath2, sep='\t', index = False, header=True)
 
 
     print("Finished PMDfinder!")
