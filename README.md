@@ -22,7 +22,7 @@ $ pip install .
 ```
 $ python
 >>> from PMDfinder import findPMD
->>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed")
+>>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed", "test/output_GRanges.bed")
 ```
 
 ## Function
@@ -53,3 +53,11 @@ Each dot represents the percent methylation level of an individual CpG site. The
         chr22	21971653	26	25	Non-PMD
         chr22	21971662	24	24	Non-PMD
         chr22	21971701	41	40	Non-PMD
+
+### Example GRanges BED:
+        chr	        start	        end	status
+        chr22	21971222	22255471	Non-PMD	
+        chr22	22255516	23423076	PMD	
+        chr22	23423100	24028773	Non-PMD
+        chr22	24028798	24222440	PMD
+        chr22	24222552	25115617	Non-PMD
