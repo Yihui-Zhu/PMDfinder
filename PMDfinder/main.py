@@ -126,10 +126,10 @@ def findPMD(filepath, outputpath1, outputpath2):
     # small non_PMD intervals
     small_non_PMD_intervals = []
     for i in range(1, len(break_pts2)):
-        if assign2[break_pts2[i]-1] - assign2[break_pts2[i-1]] + 1 < 101:
+        if assign2[break_pts2[i]-1] - assign2[break_pts2[i-1]] + 1 < 51:
             small_non_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 101 to Non-PMD
+    # change the PMD interval with less than 51 to Non-PMD
     for interval in small_non_PMD_intervals:
         final_result[assign2[break_pts2[interval-1] : break_pts2[interval]]] = 1
     
