@@ -96,7 +96,7 @@ def findPMD(filepath, outputpath1, outputpath2):
         if final_result[i] == 1:
             assign1.append(i)
 
-    break_pts1 = [] # index for the break point, the next equal to 1 is more than 1bp
+    break_pts1 = [0] # index for the break point, the next equal to 1 is more than 1bp
     for i in range(1, len(assign1)):
         if assign1[i] - assign1[i-1] > 1:
             break_pts1.append(i)    
