@@ -77,7 +77,7 @@ def findPMD(filepath, outputpath1, outputpath2):
     latent_dim = 8
 
     m = Autoencoder(latent_dim)
-    m.compile(optimizer='adam', loss=losses.MeanSquaredError())
+    m.compile(optimizer='adam', loss=losses.MeanSquaredError(), run_eagerly=True)
 
     # fit the model
     m.fit(X, X, epochs=5, shuffle=True)
