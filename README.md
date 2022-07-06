@@ -62,4 +62,6 @@ Each dot represents the percent methylation level of an individual CpG site. The
         chr22	36709840	36729403	PMD
         chr22	36729422	36729422	Non-PMD
         chr22	36729431	36751503	PMD
-        
+
+## Version
+v0.1.0  
