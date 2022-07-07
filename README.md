@@ -22,11 +22,19 @@ $ pip install .
 ```
 $ python
 >>> from PMDfinder import findPMD
->>> findPMD("tests/meth_PMD.bed", "tests/output_meth.bed", "tests/output_GRanges.bed")
+>>> findPMD("tests/DSS_chr22_files", "tests/output_meth.bed", "tests/output_GRanges.bed", 0.9, 20)
 ```
 
 ## Function
 `findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
+```
+findPMD(filepath, outputpath1, outputpath2, percentile, cutoff)
+```
+`directory`: input BED files directory path.
+`outputpath1`: the output bed file path.
+`outputpath2`: the output grange file path.
+`percentile`: Percent of samples per CpG coverage, values range from 0 to 1.
+`cutoff`: minimum number of reads per CpG site
 
 ## Input BED file format:
 Input files should be split by each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
@@ -38,13 +46,16 @@ Input files should be split by each chromosome. The format should be in BED whic
         chr22	21971662	24	24
         chr22	21971701	41	40
 
+## Input Directory:
+Store all samples BED files inside one directory. For example: `tests/DSS_chr22_files`
+
 ### PMDfinder workflow plot:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="400" height="525"></div>
 
 ### Example output:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="600" height="400"></div>
 
-Each dot represents the percent methylation level of an individual CpG site. The red line represent the identification of PMD. 
+Each dot represents the percent methylation level of an individual CpG site. The red line on the top represent the identification of PMD. The red line on the bottom represent the identification of Non-PMD.
 
 ### Example output_meth BED:
         chr	        pos	        N	X	PMD_predict
@@ -64,4 +75,4 @@ Each dot represents the percent methylation level of an individual CpG site. The
         chr22	36729431	36751503	PMD
 
 ## Version
-v0.1.0  
+v0.2.0  
