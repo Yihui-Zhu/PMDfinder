@@ -50,10 +50,10 @@ Input files should be split by each chromosome. The format should be in BED whic
 Store all samples BED files inside one directory. For example: `tests/DSS_chr22_files`
 
 ### PMDfinder workflow plot:
-<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="800" height="1200"></div>
+<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="800" height="1500"></div>
 
 ### Example output:
-<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="1500" height="500"></div>
+<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="3000" height="1000"></div>
 
 Each dot represents the percent methylation level of an individual CpG site. The red line on the top represent the identification of PMD. The red line on the bottom represent the identification of Non-PMD.
 
