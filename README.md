@@ -36,6 +36,13 @@ findPMD(filepath, outputpath1, outputpath2, percentile, cutoff)
 - `percentile`: Percent of samples per CpG coverage, values range from 0 to 1.
 - `cutoff`: minimum number of reads per CpG site
 
+`generateFigure` is the plotting function of PMDfinder package that enable plot results from the output methylation file
+```
+generateFigure(output_methylation, path)
+```
+- `output_methylation`: BED file.
+- `path`: the output figure path.
+
 ## Input BED file format:
 Input files should be split by each chromosome. The format should be in BED which is a tab-delimited text file with 4 columns: chromosome (chr), position (pos), total reads (N), and methylated reads (X) (see below).
 
