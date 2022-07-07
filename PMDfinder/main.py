@@ -164,7 +164,7 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
         if assign2[break_pts2[i]-1] - assign2[break_pts2[i-1]] + 1 < 6:
             small_non_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 51 to Non-PMD
+    # change the PMD interval with less than 6 to Non-PMD
     for interval in small_non_PMD_intervals:
         final_result[assign2[break_pts2[interval-1] : break_pts2[interval]]] = 1
     
