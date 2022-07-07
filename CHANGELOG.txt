@@ -4,3 +4,9 @@ Change Log
 0.1.0 (06/01/2022)
 -------------------
 - One sample Release
+
+0.2.0 (07/06/2022)
+-------------------
+- Take one directory input files
+- Added data preprocessing 
+- Output figure
