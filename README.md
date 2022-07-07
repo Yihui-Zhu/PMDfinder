@@ -50,7 +50,7 @@ Input files should be split by each chromosome. The format should be in BED whic
 Store all samples BED files inside one directory. For example: `tests/DSS_chr22_files`
 
 ### PMDfinder workflow plot:
-<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="400" height="600"></div>
+<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="800" height="1200"></div>
 
 ### Example output:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="1500" height="500"></div>
@@ -58,21 +58,21 @@ Store all samples BED files inside one directory. For example: `tests/DSS_chr22_
 Each dot represents the percent methylation level of an individual CpG site. The red line on the top represent the identification of PMD. The red line on the bottom represent the identification of Non-PMD.
 
 ### Example output_meth BED:
-        chr	        pos	        N	X	PMD_predict
-        chr22	21971583	39	26	Non-PMD
-        chr22	21971603	34	31	Non-PMD
-        chr22	21971653	26	25	Non-PMD
-        chr22	21971662	24	24	Non-PMD
-        chr22	21971701	41	40	Non-PMD
+        chr	        pos	        meth_ratio	PMD_predict
+        chr22	49175149	0.5735586481113321	PMD
+        chr22	49175157	0.3700707785642063	PMD
+        chr22	49175225	0.7020905923344948	PMD
+        chr22	49175246	0.6876404494382022	PMD
+        chr22	49175265	0.4755784061696658	PMD
 
 ### Example GRanges BED:
         chr	        start	        end	        status
-        chr22	36146264	36188467	Non-PMD
-        chr22	36188555	36701973	PMD
-        chr22	36701993	36709838	Non-PMD
-        chr22	36709840	36729403	PMD
-        chr22	36729422	36729422	Non-PMD
-        chr22	36729431	36751503	PMD
+        chr22	47151743	49735986	PMD
+        chr22	49736040	49971468	Non-PMD
+        chr22	49971477	50167316	PMD
+        chr22	50167380	50290338	Non-PMD
+        chr22	50290345	50296272	PMD
+
 
 ## Version
 v0.2.0  
