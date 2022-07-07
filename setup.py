@@ -9,7 +9,7 @@ classifier = [
 ]
 
 setup(name='PMDfinder',
-      version='0.1.0',
+      version='0.2.0',
       description='Identify partially methylation from methylome',
       url='https://github.com/Yihui-Zhu/PMDfinder',  
       author='Yihui Zhu',
