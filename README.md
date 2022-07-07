@@ -85,5 +85,5 @@ Each dot represents the percent methylation level of an individual CpG site. The
 v0.2.0  
 
 ## Dataset
-- Zhu, Yihui, J. Antonio Gomez, Benjamin I. Laufer, Charles E. Mordaunt, Julia S. Mouat, Daniela C. Soto, Megan Y. Dennis et al. "Placental methylome reveals a 22q13. 33 brain regulatory gene locus associated with autism." Genome biology 23, no. 1 (2022): 1-32. *doi:* https://doi.org/10.1186/s13059-022-02613-1
+- Zhu, Yihui, J. Antonio Gomez, Benjamin I. Laufer, Charles E. Mordaunt, Julia S. Mouat, Daniela C. Soto, Megan Y. Dennis et al. "Placental methylome reveals a 22q13. 33 brain regulatory gene locus associated with autism." Genome biology 23, no. 1 (2022): 1-32. **doi:** https://doi.org/10.1186/s13059-022-02613-1
 - Datasets supporting the conclusions are available in the Gene Expression Omnibus repository (GEO): https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE178206
