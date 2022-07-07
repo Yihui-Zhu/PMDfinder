@@ -125,7 +125,7 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
     final_result = kmeans.labels_
 
     ### Post-processing steps
-    ## Remove PMD that is less than 101 bp length
+    ## Remove PMD that is less than 6 bp length
     assign1 = [] # index for the location equal to 1
     for i in range(len(final_result)):
         if final_result[i] == 1:
@@ -142,11 +142,11 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
         if assign1[break_pts1[i]-1] - assign1[break_pts1[i-1]] + 1 < 6:
             small_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 101 to Non-PMD
+    # change the PMD interval with less than 6 to Non-PMD
     for interval in small_PMD_intervals:
         final_result[assign1[break_pts1[interval-1] : break_pts1[interval]]] = 0
 
-    ## Merge PMD that is less than 101 bp from the next one
+    ## Merge PMD that is less than 6 bp from the next one
     # This need to check the non-PMD region length
     assign2 = []
     for i in range(len(final_result)):
