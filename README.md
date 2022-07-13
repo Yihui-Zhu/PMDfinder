@@ -22,19 +22,21 @@ $ pip install .
 ```
 $ python
 >>> from PMDfinder import findPMD
->>> findPMD("tests/DSS_chr22_files", "tests/output_meth.bed", "tests/output_GRanges.bed", 0.9, 20)
+>>> findPMD("tests/DSS_chr22_files", "tests/cpgIslandExt.hg38.bed", "tests/output_meth.bed", "tests/output_GRanges.bed", 0.9, 20, "tests/meth_plot.png")
 ```
 
 ## Function
 `findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
 ```
-findPMD(filepath, outputpath1, outputpath2, percentile, cutoff)
+findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.9, cutoff=20, plotpath='tests/meth_plot.png')
 ```
 - `directory`: input BED files directory path.
+- `CpG_Island_path`: input CpG Island BED files path.
 - `outputpath1`: the output bed file path.
 - `outputpath2`: the output grange file path.
 - `percentile`: Percent of samples per CpG coverage, values range from 0 to 1.
 - `cutoff`: minimum number of reads per CpG site
+- `plotpath`: the output figure path. 
 
 `generateFigure` is the plotting function of PMDfinder package that enable plot results from the output methylation file
 ```
