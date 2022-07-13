@@ -37,23 +37,25 @@ class Autoencoder(Model):
         decoded = self.decoder(encoded)
         return decoded  
 
-def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
+def findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png'):
     """
-        findPMD(filepath, outputpath1, outputpath2, percentile, cutoff)
+        findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png')
     The main function in PMDfinder.
     
     * directory: input BED files directory path.
+    * CpG_Island_path: input CpG Island BED files path.
     * outputpath1: the output bed file path.
     * outputpath2: the output grange file path.
     * percentile: Percent of samples per CpG coverage, values range from 0 to 1.
     * cutoff: minimum number of reads per CpG site
+    * plotpath: the output figure path. 
     """
-
+    
     # load DSS methylation data
     meth_ratios = []
     for filename in os.listdir(directory):
         filepath = os.path.join(directory, filename)
-        methylation = pd.read_csv(filepath, sep='\t', comment='t', header = 0, low_memory=False)
+        methylation = pd.read_csv(filepath, sep='\t', comment='t', header=0, low_memory=False)
         # store the location and the percent methylation
         a = list(map(float, methylation['X']))
         b = list(map(float, methylation['N']))
@@ -125,7 +127,7 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
     final_result = kmeans.labels_
 
     ### Post-processing steps
-    ## Remove PMD that is less than 6 bp length
+    ## Remove PMD that is less than 101 bp length
     assign1 = [] # index for the location equal to 1
     for i in range(len(final_result)):
         if final_result[i] == 1:
@@ -164,7 +166,7 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
         if assign2[break_pts2[i]-1] - assign2[break_pts2[i-1]] + 1 < 6:
             small_non_PMD_intervals.append(i)
 
-    # change the PMD interval with less than 6 to Non-PMD
+    # change the PMD interval with less than 51 to Non-PMD
     for interval in small_non_PMD_intervals:
         final_result[assign2[break_pts2[interval-1] : break_pts2[interval]]] = 1
     
@@ -175,38 +177,50 @@ def findPMD(directory, outputpath1, outputpath2, percentile, cutoff):
 
     one_avg = np.mean([PMD_level[x] for x in range(len(final_result)) if final_result[x] == 1])
     zero_avg = np.mean([PMD_level[x] for x in range(len(final_result)) if final_result[x] == 0])
+    print("k-means label 0 PMD_level avg:", zero_avg, "; label 1 avg:", one_avg)
 
     output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0].map({1: 'PMD', 0: 'Non-PMD'}) if one_avg > zero_avg else pd.DataFrame(final_result)[0].map({1: 'Non-PMD', 0: 'PMD'})
-    output_methylation.to_csv(outputpath1, sep='\t', index = False, header=True)
+    CpG_Islands = pd.read_csv(CpG_Island_path, sep='\t', header=None, usecols=[0,1,2])
+    CpG_Islands = CpG_Islands[CpG_Islands[0] == 'chr22'] 
+    CpG_Islands_rows = []
+    ind = 0
+    for i, pos in enumerate(output_methylation['pos']):
+        if pos > CpG_Islands.iloc[ind, 2] and ind < len(CpG_Islands.index):
+            ind += 1
+        if CpG_Islands.iloc[ind, 1] <= pos <= CpG_Islands.iloc[ind, 2]:
+            CpG_Islands_rows.append(i)
+    
+    output_methylation_reduced = output_methylation.drop(CpG_Islands_rows)
+    output_methylation_reduced.to_csv(outputpath1, sep='\t', index=False, header=True)
 
     # output grange file
     df = pd.DataFrame(columns = ['chr', 'start', 'end', 'status'])
 
+    CpG_Islands_rows = set(CpG_Islands_rows)
     ncols = len(output_methylation)
     i, j = 0, 0
-
     while i < ncols:
         if j == ncols:
-            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
+            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index=True)
             break
 
-        ti = output_methylation.iloc[i, 3]
-        tj = output_methylation.iloc[j, 3]
+        ti = output_methylation.iloc[i, 3] if i not in CpG_Islands_rows else 'CpG_Island'
+        tj = output_methylation.iloc[j, 3] if j not in CpG_Islands_rows else 'CpG_Island'
         if tj == ti:
             j += 1
         else:
-            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index = True)
+            df = df.append({'chr': output_methylation.iloc[i, 0], 'start': output_methylation.iloc[i, 1], 'end': output_methylation.iloc[j-1, 1], 'status': ti}, ignore_index=True)
             i = j
 
     df.to_csv(outputpath2, sep='\t', index = False, header=True)
     # print(df)
-    generateFigure(output_methylation, 'tests/meth_plot.png')
+    generateFigure(output_methylation_reduced, plotpath)
 
     print("Finished PMDfinder!")
 
     # np.savetxt(outputpath1, outputpath2, final_result, delimiter=',')
 
-def generateFigure(output_methylation, path):
+def generateFigure(df, path):
     """
         generateFigure(output_methylation, path)
     The plotting function in PMDfinder.
@@ -214,11 +228,10 @@ def generateFigure(output_methylation, path):
     * output_methylation: BED file.
     * path: the output figure path.
     """
-
     fig = plt.figure(figsize=(40, 15), dpi=100)
 
-    plt.plot(output_methylation['pos'], output_methylation['meth_ratio'], 'o', color='black', label='meth ratio', ms = 1)
-    plt.plot(output_methylation['pos'], output_methylation['PMD_predict'] == 'PMD', 'o', color='red')
+    plt.plot(df['pos'], df['meth_ratio'], 'o', color='black', label='meth ratio', ms = 1)
+    plt.plot(df['pos'], df['PMD_predict'] == 'PMD', 'o', color='red')
 
     current_values = plt.gca().get_xticks()
     plt.gca().set_xticklabels(['{:.0f}'.format(x) for x in current_values])
