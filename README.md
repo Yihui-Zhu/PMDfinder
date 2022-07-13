@@ -60,11 +60,11 @@ Store all samples BED files inside one directory. For example: `tests/DSS_chr22_
 For `hg38`, `cpgIslandExt` table was extracted from UCSC and used [BEDOPS](http://bedops.readthedocs.io/en/latest/content/reference/file-management/sorting/sort-bed.html) `sort-bed` for BED file.
 Command line adapted from [biostars page](https://www.biostars.org/p/236141/). 
 ```
-wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg19/database/cpgIslandExt.txt.gz \
+wget -qO- http://hgdownload.cse.ucsc.edu/goldenpath/hg38/database/cpgIslandExt.txt.gz \
    | gunzip -c \
    | awk 'BEGIN{ OFS="\t"; }{ print $2, $3, $4, $5$6, substr($0, index($0, $7)); }' \
    | sort-bed - \
-   > cpgIslandExt.hg19.bed
+   > cpgIslandExt.hg38.bed
 ```
 ### Example cpgIslandExt.hg38.bed:
 ```
