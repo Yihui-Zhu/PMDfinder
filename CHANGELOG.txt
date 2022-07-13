@@ -10,3 +10,7 @@ Change Log
 - Take one directory input files
 - Added data preprocessing 
 - Output figure
+
+0.3.0 (07/12/2022)
+-------------------
+- Filter on CpG Island
