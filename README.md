@@ -76,7 +76,7 @@ chr22	48623105	48623505	CpG:47	400	47	280	23.5	70	1
 ```
 
 ### PMDfinder workflow plot:
-<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="640" height="1200"></div>
+<div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_workflow.png" alt="PMDfinder workflow plot" width="640" height="1300"></div>
 
 ### Example output:
 <div align="center"><img src="https://github.com/Yihui-Zhu/PMDfinder/blob/main/Figures/PMDfinder_output.png" alt="PMDfinder output plot" width="2200" height="500"></div>
@@ -101,7 +101,7 @@ Each dot represents the percent methylation level of an individual CpG site. The
 
 
 ## Version
-v0.2.0  
+v0.3.0  
 
 ## Dataset
 - Zhu, Yihui, J. Antonio Gomez, Benjamin I. Laufer, Charles E. Mordaunt, Julia S. Mouat, Daniela C. Soto, Megan Y. Dennis et al. "Placental methylome reveals a 22q13. 33 brain regulatory gene locus associated with autism." Genome biology 23, no. 1 (2022): 1-32. **doi:** https://doi.org/10.1186/s13059-022-02613-1
