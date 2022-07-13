@@ -93,12 +93,11 @@ Each dot represents the percent methylation level of an individual CpG site. The
 
 ### Example GRanges BED:
         chr	        start	        end	        status
-        chr22	47151743	49735986	PMD
-        chr22	49736040	49971468	Non-PMD
-        chr22	49971477	50167316	PMD
-        chr22	50167380	50290338	Non-PMD
-        chr22	50290345	50296272	PMD
-
+        chr22	50169395	50171197	CpG_Island
+        chr22	50171248	50173818	PMD
+        chr22	50173823	50176803	Non-PMD
+        chr22	50176850	50179470	CpG_Island
+        chr22	50179513	50184700	Non-PMD
 
 ## Version
 v0.3.0  
