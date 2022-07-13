@@ -101,6 +101,13 @@ Each dot represents the percent methylation level of an individual CpG site. The
         chr22	50176850	50179470	CpG_Island
         chr22	50179513	50184700	Non-PMD
 
+## UC Davis Tristan Server Example
+Install TensorFlow and activate it.
+```
+conda create -n tf-gpu tensorflow-gpu
+conda activate tf-gpu
+```
+
 ## Version
 v0.3.0  
 
