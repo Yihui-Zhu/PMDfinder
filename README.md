@@ -18,7 +18,7 @@ $ cd PMDfinder
 $ pip install .
 ```
 
-## Generic Usage Example
+## Generic Usage Example (This example use chr22)
 ```
 $ python
 >>> from PMDfinder import findPMD
