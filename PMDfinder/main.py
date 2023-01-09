@@ -37,15 +37,16 @@ class Autoencoder(Model):
         decoded = self.decoder(encoded)
         return decoded  
 
-def findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png'):
+def findPMD(directory, CpG_Island_path, outputpath1, outputpath2, chromosome='chr22', percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png'):
     """
-        findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png')
+        findPMD(directory, CpG_Island_path, outputpath1, outputpath2, chromosome='chr22', percentile=0.95, cutoff=20, plotpath='tests/meth_plot.png')
     The main function in PMDfinder.
     
     * directory: input BED files directory path.
     * CpG_Island_path: input CpG Island BED files path.
     * outputpath1: the output bed file path.
     * outputpath2: the output grange file path.
+    * chromosome: the chromosome number used for analysis.
     * percentile: Percent of samples per CpG coverage, values range from 0 to 1.
     * cutoff: minimum number of reads per CpG site
     * plotpath: the output figure path. 
@@ -171,7 +172,7 @@ def findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.9
         final_result[assign2[break_pts2[interval-1] : break_pts2[interval]]] = 1
     
     # file output
-    output_methylation = pd.DataFrame(['chr22'] * (len(meth_ratio)-1023), columns=['chr'])
+    output_methylation = pd.DataFrame([chromosome] * (len(meth_ratio)-1023), columns=['chr'])
     output_methylation.loc[:, 'pos'] = position[:len(meth_ratio)-1023]
     output_methylation.loc[:, 'meth_ratio'] = meth_ratio[:len(meth_ratio)-1023]
 
@@ -181,7 +182,7 @@ def findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.9
 
     output_methylation.loc[:, 'PMD_predict'] = pd.DataFrame(final_result)[0].map({1: 'PMD', 0: 'Non-PMD'}) if one_avg > zero_avg else pd.DataFrame(final_result)[0].map({1: 'Non-PMD', 0: 'PMD'})
     CpG_Islands = pd.read_csv(CpG_Island_path, sep='\t', header=None, usecols=[0,1,2])
-    CpG_Islands = CpG_Islands[CpG_Islands[0] == 'chr22'] 
+    CpG_Islands = CpG_Islands[CpG_Islands[0] == chromosome] 
     CpG_Islands_rows = []
     ind = 0
     for i, pos in enumerate(output_methylation['pos']):
