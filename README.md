@@ -22,18 +22,19 @@ $ pip install .
 ```
 $ python
 >>> from PMDfinder import findPMD
->>> findPMD("tests/DSS_chr22_files", "tests/cpgIslandExt.hg38.bed", "tests/output_meth.bed", "tests/output_GRanges.bed", 0.9, 20, "tests/meth_plot.png")
+>>> findPMD("tests/DSS_chr22_files", "tests/cpgIslandExt.hg38.bed", "tests/output_meth.bed", "tests/output_GRanges.bed", 'chr22', 0.9, 20, "tests/meth_plot.png")
 ```
 
 ## Function
 `findPMD` is the main function of the PMDfinder package with methylome as input with output as PMD location.
 ```
-findPMD(directory, CpG_Island_path, outputpath1, outputpath2, percentile=0.9, cutoff=20, plotpath='tests/meth_plot.png')
+findPMD(directory, CpG_Island_path, outputpath1, outputpath2, chromosome='chr22', percentile=0.9, cutoff=20, plotpath='tests/meth_plot.png')
 ```
 - `directory`: input BED files directory path.
 - `CpG_Island_path`: input CpG Island BED files path.
 - `outputpath1`: the output bed file path.
 - `outputpath2`: the output grange file path.
+- `chromosome`: the chromosome number used for the analysis.
 - `percentile`: Percent of samples per CpG coverage, values range from 0 to 1.
 - `cutoff`: minimum number of reads per CpG site
 - `plotpath`: the output figure path. 
